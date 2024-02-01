@@ -5,6 +5,8 @@ Handle authorization in your javascript applications like a boss
 ## Examples
 
 ```ts
+import { Role } from "https://deno.land/x/vigia/mod.ts";
+
 const userRole = new Role();
 
 userRole.buildPermissions([
@@ -25,6 +27,8 @@ if (userRole.can("make", "coffee")) {
 You can choose the builder pattern to set the role permissions.
 
 ```ts
+import { Role } from "https://deno.land/x/vigia/mod.ts";
+
 const userRole = new Role();
 
 userRole.set("can", "make", "coffee").set("cannot", "make", "sandwich");
