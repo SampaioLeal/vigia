@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "lint": "deno lint",
+    "test": "deno test -A ./"
+  }
+}
