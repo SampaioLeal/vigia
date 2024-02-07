@@ -1,4 +1,7 @@
 {
+  "name": "@sampaiol/vigia",
+  "version": "0.0.1",
+  "exports": "./mod.ts",
   "tasks": {
     "lint": "deno lint",
     "test": "deno test -A ./"

@@ -25,7 +25,7 @@ export class Role<Action extends string, Subject extends string> {
     permissions && this.buildPermissions(permissions);
   }
 
-  buildPermissions(permissions: RawRole<Action, Subject>[]) {
+  buildPermissions(permissions: RawRole<Action, Subject>[]): void {
     this.#rawPermissions = permissions;
     this.#permissions.clear();
     permissions.forEach(([canOrCannot, action, subject]) => {
@@ -33,21 +33,25 @@ export class Role<Action extends string, Subject extends string> {
     });
   }
 
-  set(canOrCannot: "can" | "cannot", action: Action, subject: Subject) {
+  set(
+    canOrCannot: "can" | "cannot",
+    action: Action,
+    subject: Subject,
+  ): Role<Action, Subject> {
     this.#permissions.set(`${action}:${subject}`, canOrCannot === "can");
 
     return this;
   }
 
-  can(action: Action, subject: Subject) {
+  can(action: Action, subject: Subject): boolean {
     return this.#permissions.get(`${action}:${subject}`) ?? false;
   }
 
-  cannot(action: Action, subject: Subject) {
+  cannot(action: Action, subject: Subject): boolean {
     return !this.#permissions.get(`${action}:${subject}`);
   }
 
-  getRaw() {
+  getRaw(): RawRole<Action, Subject>[] {
     return structuredClone(this.#rawPermissions);
   }
 }
